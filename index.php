@@ -95,11 +95,11 @@ $timeA = new DateTime();
 $timeB = new DateTime();
 
 $timeB->setTimezone(new DateTimeZone('Asia/Tokyo'));
-//$timeB->sub(new DateInterval("PT7H"));
+$timeB->sub(new DateInterval("PT7H"));
 
 
 echo 'Paris: '. $timeA->format('d-m-Y H:i:s');
-echo '<br>Tokyo: '. $timeB->format('d-m-Y H:i:s');
+echo '<br>Tokyo il y a 7h: '. $timeB->format('d-m-Y H:i:s');
 
 echo '<br>égalité';
 var_dump($timeA == $timeB);
