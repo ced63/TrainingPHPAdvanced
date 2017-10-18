@@ -1,5 +1,28 @@
 <?php
 
+require 'vendor/autoload.php';
+
+//EXO 6
+
+$cache = new \Symfony\Component\Cache\Simple\FilesystemCache();
+
+
+$count = $cache->get('visitCount');
+echo "Compteur de visite : " . $count . "<br>";
+$count++;
+$cache->set('visitCount', $count);
+
+
+echo 'Current time : ' . date('d-m-y H:i:s') . '<br>';
+
+if ($cache->has('lastExecution')) {
+    $time = $cache->get('lastExecution');
+    echo 'lastExecution : ' . date('d-m-y H:i:s', $time);
+}
+
+$cache->set('lastExecution', time(), 15);
+
+
 
 //EXO 4
 // masquer les erreurs qui vienne de php, afficher que celle qu on veut apres
@@ -31,7 +54,6 @@
 //// le second parametre defini celui qu'on veut intercepter
 //set_error_handler('userErrorHandler', E_ALL);
 //
-//require 'vendor/autoload.php';
 //
 //
 //use Smile\Training\Format as myFormat;
@@ -91,21 +113,26 @@
 //}
 //echo "This is the end". "\n";
 
-$timeA = new DateTime();
-$timeB = new DateTime();
+//EXO 5
+//$timeA = new DateTime();
+//$timeB = new DateTime();
+//
+//$timeB->setTimezone(new DateTimeZone('Asia/Tokyo'));
+////$timeB->sub(new DateInterval("PT7H"));
+//
+//
+//echo 'Paris: '. $timeA->format('d-m-Y H:i:s');
+//echo '<br>Tokyo: '. $timeB->format('d-m-Y H:i:s');
+//
+//echo '<br>égalité';
+//var_dump($timeA == $timeB);
+//
+//echo '<br>A > B';
+//var_dump($timeA > $timeB);
+//
+//echo '<br>A < B';
+//var_dump($timeA < $timeB);
 
-$timeB->setTimezone(new DateTimeZone('Asia/Tokyo'));
-$timeB->sub(new DateInterval("PT7H"));
 
 
-echo 'Paris: '. $timeA->format('d-m-Y H:i:s');
-echo '<br>Tokyo il y a 7h: '. $timeB->format('d-m-Y H:i:s');
 
-echo '<br>égalité';
-var_dump($timeA == $timeB);
-
-echo '<br>A > B';
-var_dump($timeA > $timeB);
-
-echo '<br>A < B';
-var_dump($timeA < $timeB);
