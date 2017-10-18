@@ -91,11 +91,21 @@
 //}
 //echo "This is the end". "\n";
 
-$time = new DateTime();
-var_dump($time->format('d-m-Y H:i:s'));
-echo "<br>";
+$timeA = new DateTime();
+$timeB = new DateTime();
 
-date_default_timezone_set('Asia/Pyongyang');
-$time2 = new DateTime();
-var_dump($time2->format('d-m-Y H:i:s'));
+$timeB->setTimezone(new DateTimeZone('Asia/Tokyo'));
+//$timeB->sub(new DateInterval("PT7H"));
 
+
+echo 'Paris: '. $timeA->format('d-m-Y H:i:s');
+echo '<br>Tokyo: '. $timeB->format('d-m-Y H:i:s');
+
+echo '<br>égalité';
+var_dump($timeA == $timeB);
+
+echo '<br>A > B';
+var_dump($timeA > $timeB);
+
+echo '<br>A < B';
+var_dump($timeA < $timeB);
