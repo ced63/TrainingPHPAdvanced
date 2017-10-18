@@ -1,0 +1,14 @@
+{
+    "name": "smile/trainingphp",
+    "description": "mon application de formation",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
