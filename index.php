@@ -1,44 +1,68 @@
 <?php
 
+//EXO 8
+declare(strict_types=1);
+
+
 require 'vendor/autoload.php';
 
+//EXO 8
+function double(int $number)
+{
+    return $number * 2;
+}
+
+
+echo "OK<br>";
+echo double(21);
+echo "OK si pas strict<br>";
+echo double('21');
+echo "OK si pas strict<br>";
+echo double('21,5');
+echo "PB dans tous les modes<br>";
+echo double('wazza');
+
+
+function somme(int $a, $b):int
+{
+    return $a + $b;
+}
+
 //EXO 7
-
-class A
-{
-    public $b;
-    public $titre;
-}
-
-class B
-{
-    public $a;
-    public $titre;
-
-}
-
-// disable GC to see reference
-gc_disable();
-
-for ($i = 0; $i < 1000000 ; $i++){
-    $a = new A();
-    $b = new B();
-
-    $a->titre = "nzbdjhz efjh zefjhg zieufg zef hgjz vdnvz hcvzehv jzjhdgdcv hzgevc jhgzvc hgvd chgvze chg";
-    $b->titre = "lzjhbe fjhvgfe jhgkzfei zegjzhegfdkjzhgfeze gfhzfedr zfe zhefd zefzjfg zjhfe zvfv jhlghg";
-
-    $a->b = $b;
-    $b->a = $a;
-    unset($a, $b);
-
-    echo round(memory_get_usage() / 1024 / 1024, 0), ' Mb used', PHP_EOL;
-}
+//class A
+//{
+//    public $b;
+//    public $titre;
+//}
+//
+//class B
+//{
+//    public $a;
+//    public $titre;
+//
+//}
+//
+//// disable GC to see reference
+//gc_disable();
+//
+//for ($i = 0; $i < 1000000 ; $i++){
+//    $a = new A();
+//    $b = new B();
+//
+//    $a->titre = "nzbdjhz efjh zefjhg zieufg zef hgjz vdnvz hcvzehv jzjhdgdcv hzgevc jhgzvc hgvd chgvze chg";
+//    $b->titre = "lzjhbe fjhvgfe jhgkzfei zegjzhegfdkjzhgfeze gfhzfedr zfe zhefd zefzjfg zjhfe zvfv jhlghg";
+//
+//    $a->b = $b;
+//    $b->a = $a;
+//    unset($a, $b);
+//
+//    echo round(memory_get_usage() / 1024 / 1024, 0), ' Mb used', PHP_EOL;
+//}
 //echo round(memory_get_usage() / 1024 / 1024, 0), ' Mb used', PHP_EOL;
 
 
-
 //EXO 6
-//
+////
 //$cache = new \Symfony\Component\Cache\Simple\FilesystemCache();
 //
 //
