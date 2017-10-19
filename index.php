@@ -2,26 +2,60 @@
 
 require 'vendor/autoload.php';
 
-//EXO 6
+//EXO 7
 
-$cache = new \Symfony\Component\Cache\Simple\FilesystemCache();
-
-
-$count = $cache->get('visitCount');
-echo "Compteur de visite : " . $count . "<br>";
-$count++;
-$cache->set('visitCount', $count);
-
-
-echo 'Current time : ' . date('d-m-y H:i:s') . '<br>';
-
-if ($cache->has('lastExecution')) {
-    $time = $cache->get('lastExecution');
-    echo 'lastExecution : ' . date('d-m-y H:i:s', $time);
+class A
+{
+    public $b;
+    public $titre;
 }
 
-$cache->set('lastExecution', time(), 15);
+class B
+{
+    public $a;
+    public $titre;
 
+}
+
+// disable GC to see reference
+gc_disable();
+
+for ($i = 0; $i < 1000000 ; $i++){
+    $a = new A();
+    $b = new B();
+
+    $a->titre = "nzbdjhz efjh zefjhg zieufg zef hgjz vdnvz hcvzehv jzjhdgdcv hzgevc jhgzvc hgvd chgvze chg";
+    $b->titre = "lzjhbe fjhvgfe jhgkzfei zegjzhegfdkjzhgfeze gfhzfedr zfe zhefd zefzjfg zjhfe zvfv jhlghg";
+
+    $a->b = $b;
+    $b->a = $a;
+    unset($a, $b);
+
+    echo round(memory_get_usage() / 1024 / 1024, 0), ' Mb used', PHP_EOL;
+}
+//echo round(memory_get_usage() / 1024 / 1024, 0), ' Mb used', PHP_EOL;
+
+
+
+//EXO 6
+//
+//$cache = new \Symfony\Component\Cache\Simple\FilesystemCache();
+//
+//
+//$count = $cache->get('visitCount');
+//echo "Compteur de visite : " . $count . "<br>";
+//$count++;
+//$cache->set('visitCount', $count);
+//
+//
+//echo 'Current time : ' . date('d-m-y H:i:s') . '<br>';
+//
+//if ($cache->has('lastExecution')) {
+//    $time = $cache->get('lastExecution');
+//    echo 'lastExecution : ' . date('d-m-y H:i:s', $time);
+//}
+//
+//$cache->set('lastExecution', time(), 15);
 
 
 //EXO 4
